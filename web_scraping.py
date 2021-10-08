@@ -9,7 +9,7 @@ def scrape(url):
 
 
 def main():
-    scrape()
+    scrape("https://sam.gov/content/home")
 
 if __name__ == '__main__':
     main()
