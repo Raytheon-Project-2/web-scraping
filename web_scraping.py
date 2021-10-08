@@ -1,10 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
+import time
 
 def scrape(url):
-    source = url
-    response = requests.get(source)
-    soup = BeautifulSoup(response.text, "lxml")
+    # Set URL to scrape from
+    url = 'https://sam.gov/content/home'
+    response = requests.get(url)
+
+    # Parse and Save HTML to soup object
+    soup = BeautifulSoup(response.text, "html.parser")
 
     #append attributes with same class tag and element tag into a list
     #url = []
