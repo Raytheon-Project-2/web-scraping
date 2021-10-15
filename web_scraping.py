@@ -1,16 +1,26 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-def scrape(url):
+def scrape():
     # Set URL to scrape from
     url = 'https://sam.gov/content/home'
-    response = requests.get(url)
+    path=r'C:\\Users\\mchoi\\Downloads\\chromedriver_win32\\chromedriver' # chrome driver install path
+    driver = webdriver.Chrome(executable_path=path) # web driver initialize
+    driver.get(url)
+
+    time.sleep(5)
+
+    html=driver.page_source
 
     # Parse and Save HTML to soup object
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
 
-    print(soup.find_all('a'))
+    announcments = soup.find("div", {"class" : "sds-feed"})
+    article_links = announcments.find_all('a')
+    print(article_links)
 
     #append attributes with same class tag and element tag into a list
     #url = []
@@ -20,7 +30,7 @@ def scrape(url):
     #print(url)
         
 def main():
-    scrape("http://www.imdb.com/chart/top")
+    scrape()
 
 if __name__ == '__main__':
     main()
