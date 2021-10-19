@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 def scrape():
     # Set URL to scrape from
     url = 'https://sam.gov/content/home'
-    path=r'C:\\Users\\mchoi\\Downloads\\chromedriver_win32\\chromedriver' # chrome driver install path
+    path=r'C:\\Users\\Matthew Choi\\Downloads\\chromedriver_win32\\chromedriver' # chrome driver install path
     driver = webdriver.Chrome(executable_path=path) # web driver initialize
     driver.get(url)
 
@@ -19,7 +19,9 @@ def scrape():
     soup = BeautifulSoup(html, "html.parser")
 
     announcments = soup.find("div", {"class" : "sds-feed"})
-    article_links = announcments.find_all('a')
+    article_links = []
+    for a in announcments.find_all('a', href=True):
+        article_links.append(a['href'])
     print(article_links)
 
     #append attributes with same class tag and element tag into a list
