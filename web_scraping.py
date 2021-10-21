@@ -19,9 +19,15 @@ def scrape():
     article_links = []
     for a in announcments.find_all('a', href=True):
         article_links.append(a['href'])
+    
+    for i in article_links:
+        if (i.find('article') == -1):
+            article_links.remove(i)
+    
     for link in article_links:
         print(link)  
-        
+    
+
 def main():
     scrape()
 
