@@ -1,0 +1,45 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Default ignored files\r\n/shelf/\r\n/workspace.xml\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+--- a/.idea/.gitignore	(revision f8b4b3a75110ee305346f8fa52b838c91475de4f)
++++ b/.idea/.gitignore	(date 1633710192421)
+@@ -1,3 +1,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: web_scraping.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from bs4 import BeautifulSoup\r\nimport requests\r\nimport time\r\n\r\ndef scrape(url):\r\n    # Set URL to scrape from\r\n    url = 'https://sam.gov/content/home'\r\n    response = requests.get(url)\r\n\r\n    # Parse and Save HTML to soup object\r\n    soup = BeautifulSoup(response.text, \"html.parser\")\r\n\r\n    #append attributes with same class tag and element tag into a list\r\n    #url = []\r\n    #for class_tag in soup.find all(\"a\")  # a could be any class tag\r\n        e_tag = h2_tag.find('b') # b could be any element tag that inside the class tag\r\n        url.append(e_tag.attrs['abcd']  #append the the link of the element into url, abcd is the link attribute\r\n    #print(url)\r\n        \r\ndef main():\r\n    scrape(\"https://sam.gov/content/home\")\r\n\r\nif __name__ == '__main__':\r\n    main()\r\n\r\n# use .prettify() to print out nice formatted HTML\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/web_scraping.py b/web_scraping.py
+--- a/web_scraping.py	(revision f8b4b3a75110ee305346f8fa52b838c91475de4f)
++++ b/web_scraping.py	(date 1633799519059)
+@@ -1,6 +1,8 @@
+ from bs4 import BeautifulSoup
+ import requests
+ import time
++import json
++import cvs
+ 
+ def scrape(url):
+     # Set URL to scrape from
+@@ -16,7 +18,10 @@
+         e_tag = h2_tag.find('b') # b could be any element tag that inside the class tag
+         url.append(e_tag.attrs['abcd']  #append the the link of the element into url, abcd is the link attribute
+     #print(url)
+-        
++
++    # Timer as to how often requests will run -> 3600 seconds = 1hr
++    # time.sleep(3600)
++
+ def main():
+     scrape("https://sam.gov/content/home")
+ 
