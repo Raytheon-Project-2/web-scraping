@@ -21,8 +21,8 @@ def download():
     click(S('.usa-button'))
 
     # Downloads all of the files present
-    for i in range(1,29):
-        WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "(//a[@class='data-service-file-link ng-star-inserted'])"+[i]))).click()
+    for i in range(1,4): # change 4 to 29, probably move loop to line 16
+        WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "(//a[@class='data-service-file-link ng-star-inserted'])"+f'{[i]}'))).click()
 
         # Check and submit terms of service check boxes
         driver.find_element_by_xpath("//input[@id='term19']").click()
@@ -32,6 +32,10 @@ def download():
 
     time.sleep(5)
     kill_browser()
+
+def parse_docs():
+    with open("") as file:
+        NULL
 
 def main():
     download()
