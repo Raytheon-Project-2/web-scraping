@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from helium import *
 import time
 
-#def link_scrape():
+
 def scrape():
 
     # Set URL to scrape from
@@ -13,9 +13,8 @@ def scrape():
     driver.get(url)
     html=driver.page_source
 
-    # Timer for code to run periodically and pull new announcements
+    driver.find_element_by_name('search')
     time.sleep(5)
-#@@ -19,18 +16,15 @@ def scrape():
     soup = BeautifulSoup(html, "html.parser")
 
     announcements = soup.find("div", {"class" : "sds-feed"})
@@ -24,7 +23,7 @@ def scrape():
     article_links = []
 
     # Check article for keyword, if present in text then append
-    for a in announcements.find_all('a', href=True):
+    for a in announcements:
         article_links.append(a['href'])
 
     # If keyword is not present in link, remove link
@@ -49,11 +48,11 @@ def article_content_scrape(links):
         soup = BeautifulSoup(html, "html.parser")
         # Government does not want me scraping their website boo :(
         content = soup.body.text
-        #content = soup.find("article").find('section', {'class':'ng-binding ng-scope'}).find_all('p')
+        content = soup.find("article").find('section', {'class':'ng-binding ng-scope'}).find_all('p')
         print(content)
 
 def main():
-    article_links = link_scrape()
+    article_links = scrape()
     article_content_scrape(article_links)
 
 if __name__ == '__main__':
