@@ -1,0 +1,21 @@
+Document for contract opportunities
+
+XXXXX1
+{
+	"NoticeID": {type: str, required: TRUE}
+	"Title": {type: str, required: TRUE}
+	"Department": {type: str, required: TRUE}
+	"Description": {type: str, required: TRUE}
+
+}
+
+Document for job descriptions
+
+XXXXX2
+{
+	"Job name": {type: str, required: TRUE}
+	"Job ID": {type: str, required: TRUE}
+	"Assignment": {type: str}
+	"Salary": {type: double}
+
+}
