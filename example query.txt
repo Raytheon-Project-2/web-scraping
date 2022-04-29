@@ -1,0 +1,9 @@
+myclient = pymongo.MongoClient("mongodb://128.211.160.177:20201/")
+mydb = myclient["NLP-Testing"]
+mycol = mydb["Contract Opportunities"]
+
+query = {'NoticeId': "20247088f9ce8dce999b95a74f74d6c0"}
+mydoc = mycol.find(query)
+
+for x in mydoc:
+	print(x)
